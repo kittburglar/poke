@@ -15,7 +15,7 @@ enum Endpoint: String {
 class NetworkService {
     private let kBaseUrl = "https://pokeapi.co/api/v2"
     
-    func sendRequest(with endPoint: String?,
+    func sendRequest(withEndpoint endPoint: String?,
                      completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let endPoint = endPoint else {
             return
@@ -27,6 +27,6 @@ class NetworkService {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             completionHandler(data, response, error)
-        }
+        }.resume()
     }
 }

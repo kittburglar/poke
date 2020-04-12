@@ -10,7 +10,7 @@ import UIKit
 
 class DetailListViewController: UIViewController {
     lazy var viewModel: DetailListViewModel = {
-        return DetailListViewModel()
+        return DetailListViewModel(networkService: NetworkService())
     }()
     
     override func viewDidLoad() {
@@ -19,21 +19,28 @@ class DetailListViewController: UIViewController {
         
         setupViewModel()
         
-        //tell view model to fetch, bind our closures as view model property listeners
+        // Tell view model to fetch, bind our closures as view model property listeners
         fetchPokemon()
     }
 
     func setupViewModel() {
-        // binding
-        viewModel.someClosure = { () in
-            print("yeet")
+        // Binding view to view model
+        viewModel.didStartFetch = { () in
+            // Show loading UI
+            if (self.viewModel.isLoading) {
+                // Is loading
+            } else {
+                // Is not loading
+            }
+        }
+        
+        viewModel.didFinishFetching = { () in
+            // Hide loading UI
         }
     }
     
     func fetchPokemon() {
-//        viewModel.fetchPokemon()
-        
-        //bind our ui to viewmodel (progress bar status, spinning bar, refresh list)
+        viewModel.fetchPokemon()
     }
 }
 
