@@ -10,7 +10,6 @@
 		AC751AEF24400D9A0040DBF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751AEE24400D9A0040DBF1 /* AppDelegate.swift */; };
 		AC751AF124400D9A0040DBF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751AF024400D9A0040DBF1 /* SceneDelegate.swift */; };
 		AC751AF324400D9A0040DBF1 /* DetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751AF224400D9A0040DBF1 /* DetailListViewController.swift */; };
-		AC751AF624400D9A0040DBF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC751AF424400D9A0040DBF1 /* Main.storyboard */; };
 		AC751AF824400D9B0040DBF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC751AF724400D9B0040DBF1 /* Assets.xcassets */; };
 		AC751AFB24400D9B0040DBF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC751AF924400D9B0040DBF1 /* LaunchScreen.storyboard */; };
 		AC751B0624400D9B0040DBF1 /* TableviewExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751B0524400D9B0040DBF1 /* TableviewExampleTests.swift */; };
@@ -18,6 +17,8 @@
 		AC751B2724417F090040DBF1 /* DetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751B2624417F090040DBF1 /* DetailListViewModel.swift */; };
 		AC751B2B244198FE0040DBF1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751B2A244198FE0040DBF1 /* NetworkService.swift */; };
 		AC751B2D2442CCC80040DBF1 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751B2C2442CCC80040DBF1 /* Pokemon.swift */; };
+		AC751B332443E8280040DBF1 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751B312443E8280040DBF1 /* PokemonTableViewCell.swift */; };
+		AC751B362443E8640040DBF1 /* PokemonTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC751B352443E8640040DBF1 /* PokemonTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,6 @@
 		AC751AEE24400D9A0040DBF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC751AF024400D9A0040DBF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC751AF224400D9A0040DBF1 /* DetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListViewController.swift; sourceTree = "<group>"; };
-		AC751AF524400D9A0040DBF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC751AF724400D9B0040DBF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC751AFA24400D9B0040DBF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC751AFC24400D9B0040DBF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +55,8 @@
 		AC751B2624417F090040DBF1 /* DetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListViewModel.swift; sourceTree = "<group>"; };
 		AC751B2A244198FE0040DBF1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AC751B2C2442CCC80040DBF1 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		AC751B312443E8280040DBF1 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
+		AC751B352443E8640040DBF1 /* PokemonTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +139,6 @@
 		AC751B1E24400DD30040DBF1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				AC751AF424400D9A0040DBF1 /* Main.storyboard */,
 				AC751AF924400D9B0040DBF1 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -172,6 +173,7 @@
 		AC751B24244014B10040DBF1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				AC751B2E2443E7780040DBF1 /* Rows */,
 				AC751AF224400D9A0040DBF1 /* DetailListViewController.swift */,
 				AC751B2624417F090040DBF1 /* DetailListViewModel.swift */,
 			);
@@ -199,6 +201,15 @@
 				AC751B2A244198FE0040DBF1 /* NetworkService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		AC751B2E2443E7780040DBF1 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				AC751B312443E8280040DBF1 /* PokemonTableViewCell.swift */,
+				AC751B352443E8640040DBF1 /* PokemonTableViewCellViewModel.swift */,
+			);
+			path = Rows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +318,6 @@
 			files = (
 				AC751AFB24400D9B0040DBF1 /* LaunchScreen.storyboard in Resources */,
 				AC751AF824400D9B0040DBF1 /* Assets.xcassets in Resources */,
-				AC751AF624400D9A0040DBF1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,10 +343,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC751B2B244198FE0040DBF1 /* NetworkService.swift in Sources */,
+				AC751B332443E8280040DBF1 /* PokemonTableViewCell.swift in Sources */,
 				AC751AF324400D9A0040DBF1 /* DetailListViewController.swift in Sources */,
 				AC751AEF24400D9A0040DBF1 /* AppDelegate.swift in Sources */,
 				AC751AF124400D9A0040DBF1 /* SceneDelegate.swift in Sources */,
 				AC751B2724417F090040DBF1 /* DetailListViewModel.swift in Sources */,
+				AC751B362443E8640040DBF1 /* PokemonTableViewCellViewModel.swift in Sources */,
 				AC751B2D2442CCC80040DBF1 /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,14 +385,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AC751AF424400D9A0040DBF1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC751AF524400D9A0040DBF1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AC751AF924400D9B0040DBF1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

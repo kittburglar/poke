@@ -16,7 +16,7 @@ class DetailListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        self.view.backgroundColor = .white
         setupViewModel()
         
         // Tell view model to fetch, bind our closures as view model property listeners
