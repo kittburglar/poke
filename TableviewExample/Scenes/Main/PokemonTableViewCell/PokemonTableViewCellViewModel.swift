@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct PokemonTableViewCellViewModel {
+    let name: String
+    let url: String
+}

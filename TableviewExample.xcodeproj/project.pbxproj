@@ -173,9 +173,8 @@
 		AC751B24244014B10040DBF1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				AC751B2E2443E7780040DBF1 /* Rows */,
-				AC751AF224400D9A0040DBF1 /* DetailListViewController.swift */,
-				AC751B2624417F090040DBF1 /* DetailListViewModel.swift */,
+				ACC43D0E244D0B8B00FF595D /* DetailList */,
+				AC751B2E2443E7780040DBF1 /* PokemonTableViewCell */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -203,13 +202,22 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		AC751B2E2443E7780040DBF1 /* Rows */ = {
+		AC751B2E2443E7780040DBF1 /* PokemonTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				AC751B312443E8280040DBF1 /* PokemonTableViewCell.swift */,
 				AC751B352443E8640040DBF1 /* PokemonTableViewCellViewModel.swift */,
 			);
-			path = Rows;
+			path = PokemonTableViewCell;
+			sourceTree = "<group>";
+		};
+		ACC43D0E244D0B8B00FF595D /* DetailList */ = {
+			isa = PBXGroup;
+			children = (
+				AC751AF224400D9A0040DBF1 /* DetailListViewController.swift */,
+				AC751B2624417F090040DBF1 /* DetailListViewModel.swift */,
+			);
+			path = DetailList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

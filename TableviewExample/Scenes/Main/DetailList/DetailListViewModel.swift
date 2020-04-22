@@ -17,7 +17,22 @@ class DetailListViewModel {
             self.didFinishFetching?()
         }
     }
+    private var pokemonCellViewModels: [PokemonTableViewCellViewModel] = [PokemonTableViewCellViewModel]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.refreshTableView?()
+            }
+        }
+    }
     
+    // MARK: - Property Getters
+    var numberOfCells: Int {
+        return pokemonCellViewModels.count
+    }
+    
+    func getViewModel(forIndexPath indexPath: IndexPath) -> PokemonTableViewCellViewModel {
+        return pokemonCellViewModels[indexPath.row]
+    }
     
     // MARK: - State properties
     var isLoading: Bool = false {
@@ -30,6 +45,7 @@ class DetailListViewModel {
     // MARK: - Binding closures
     var didStartFetch: (()->())?
     var didFinishFetching: (()->())?
+    var refreshTableView: (()->())?
     
     // MARK: Class Initializers
     init(networkService: NetworkService) {
@@ -52,11 +68,27 @@ class DetailListViewModel {
             }
             
             do {
-                let pokemons = try JSONDecoder().decode(Pokemons.self, from: data)
-                self.pokemons = pokemons
+                let pokemonsModel = try JSONDecoder().decode(Pokemons.self, from: data)
+                self.processPokemon(pokemonsModel)
+                
             } catch let jsonError {
                 print("Request error with response: \(jsonError)")
             }
         }
+    }
+    
+    func processPokemon(_ pokemons: Pokemons) {
+        self.pokemons = pokemons //Cache
+        var pokemonViewModels: [PokemonTableViewCellViewModel] = [PokemonTableViewCellViewModel]()
+        pokemons.results?.forEach({ (pokemon) in
+            pokemonViewModels.append(createViewModel(pokemon: pokemon))
+        })
+        
+        pokemonCellViewModels = pokemonViewModels
+    }
+    
+    // Create view model from pokemon model
+    func createViewModel(pokemon: Pokemon) -> PokemonTableViewCellViewModel {
+        return PokemonTableViewCellViewModel(name: pokemon.name, url: pokemon.url)
     }
 }
