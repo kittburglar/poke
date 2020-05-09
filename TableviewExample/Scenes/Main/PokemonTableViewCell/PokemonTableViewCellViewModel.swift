@@ -9,6 +9,13 @@
 import Foundation
 
 struct PokemonTableViewCellViewModel {
+    let pokemon: Pokemon
     let name: String
     let url: String
+    
+    init(pokemon: Pokemon) {
+        self.pokemon = pokemon
+        name = pokemon.name
+        url = pokemon.url
+    }
 }

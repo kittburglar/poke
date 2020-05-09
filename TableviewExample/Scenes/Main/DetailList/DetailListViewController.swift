@@ -11,14 +11,8 @@ import UIKit
 private let kCellIdentifier = "pokemonCellIdentifier"
 
 class DetailListViewController: UIViewController {
-    lazy var viewModel: DetailListViewModel = {
-        // Dependency Injection
-        return DetailListViewModel(networkService: NetworkService())
-    }()
-    
-    var tableView: UITableView = {
-        return UITableView()
-    }()
+    var viewModel: DetailListViewModel = DetailListViewModel(networkService: NetworkService())
+    var tableView: UITableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +27,7 @@ class DetailListViewController: UIViewController {
 
     func setupViewModel() {
         // Binding view to view model
-        viewModel.didStartFetch = { () in
+        viewModel.startedFetchHandler = { () in
             // Show loading UI
             if (self.viewModel.isLoading) {
                 // Is loading
@@ -44,12 +38,12 @@ class DetailListViewController: UIViewController {
             }
         }
         
-        viewModel.didFinishFetching = { () in
+        viewModel.fetchCompletionHandler = { () in
             // Hide loading UI
             print("Did finish fetching")
         }
         
-        viewModel.refreshTableView = { () in
+        viewModel.dataRefreshHandler = { () in
             print("Refresh table view")
             self.tableView.reloadData()
         }
@@ -57,14 +51,18 @@ class DetailListViewController: UIViewController {
     
     func setupViews() {
         view.addSubview(tableView)
+        setupTableViewConstraints()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: kCellIdentifier)
+    }
+    
+    func setupTableViewConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: kCellIdentifier)
     }
     
     func fetchPokemon() {
@@ -78,7 +76,6 @@ extension DetailListViewController: UITableViewDelegate {
 
 extension DetailListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Get viewmodel array count in
         return viewModel.numberOfCells
     }
     

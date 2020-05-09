@@ -14,13 +14,13 @@ class DetailListViewModel {
     private let networkService: NetworkService?
     private var pokemons: Pokemons? {
         didSet {
-            self.didFinishFetching?()
+            self.fetchCompletionHandler?()
         }
     }
     private var pokemonCellViewModels: [PokemonTableViewCellViewModel] = [PokemonTableViewCellViewModel]() {
         didSet {
             DispatchQueue.main.async {
-                self.refreshTableView?()
+                self.dataRefreshHandler?()
             }
         }
     }
@@ -37,15 +37,15 @@ class DetailListViewModel {
     // MARK: - State properties
     var isLoading: Bool = false {
         didSet {
-            self.didStartFetch?()
+            self.startedFetchHandler?()
         }
     }
     
     
     // MARK: - Binding closures
-    var didStartFetch: (()->())?
-    var didFinishFetching: (()->())?
-    var refreshTableView: (()->())?
+    var startedFetchHandler: (()->())?
+    var fetchCompletionHandler: (()->())?
+    var dataRefreshHandler: (()->())?
     
     // MARK: Class Initializers
     init(networkService: NetworkService) {
@@ -89,6 +89,6 @@ class DetailListViewModel {
     
     // Create view model from pokemon model
     func createViewModel(pokemon: Pokemon) -> PokemonTableViewCellViewModel {
-        return PokemonTableViewCellViewModel(name: pokemon.name, url: pokemon.url)
+        return PokemonTableViewCellViewModel(pokemon: pokemon)
     }
 }
