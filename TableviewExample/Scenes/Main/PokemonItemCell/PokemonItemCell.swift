@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PokemonTableViewCell: UITableViewCell {
+class PokemonItemCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -27,7 +27,7 @@ class PokemonTableViewCell: UITableViewCell {
     }()
     
     // View's view model
-    var viewModel: PokemonTableViewCellViewModel? {
+    var viewModel: PokemonItemViewModel? {
         didSet {
             //bind to viewmodel?
             titleLabel.text = viewModel?.name

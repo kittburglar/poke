@@ -1,5 +1,5 @@
 //
-//  DetailListViewController.swift
+//  PokemonsViewController.swift
 //  TableviewExample
 //
 //  Created by Kittiphong Xayasane on 2020-04-09.
@@ -10,8 +10,8 @@ import UIKit
 
 private let kCellIdentifier = "pokemonCellIdentifier"
 
-class DetailListViewController: UIViewController {
-    var viewModel: DetailListViewModel = DetailListViewModel(networkService: NetworkService())
+class PokemonsViewController: UIViewController {
+    var viewModel: PokemonsViewModel = PokemonsViewModel(networkService: NetworkService())
     var tableView: UITableView = UITableView()
     
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ class DetailListViewController: UIViewController {
         setupTableViewConstraints()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: kCellIdentifier)
+        tableView.register(PokemonItemCell.self, forCellReuseIdentifier: kCellIdentifier)
     }
     
     func setupTableViewConstraints() {
@@ -70,17 +70,17 @@ class DetailListViewController: UIViewController {
     }
 }
 
-extension DetailListViewController: UITableViewDelegate {
+extension PokemonsViewController: UITableViewDelegate {
     
 }
 
-extension DetailListViewController: UITableViewDataSource {
+extension PokemonsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfCells
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier, for: indexPath) as? PokemonTableViewCell else { fatalError("DequeueReusableCell cell does not exist!") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier, for: indexPath) as? PokemonItemCell else { fatalError("DequeueReusableCell cell does not exist!") }
         
         let pokemonViewModel = viewModel.getViewModel(forIndexPath: indexPath)
         cell.viewModel = pokemonViewModel

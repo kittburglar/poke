@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PokemonTableViewCellViewModel {
+struct PokemonItemViewModel {
     let pokemon: Pokemon
     let name: String
     let url: String

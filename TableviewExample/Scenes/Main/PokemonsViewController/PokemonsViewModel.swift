@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DetailListViewModel {
+class PokemonsViewModel {
     //MARK: - Model object
     //Private to seperate view from model
     private let networkService: NetworkService?
@@ -17,7 +17,7 @@ class DetailListViewModel {
             self.fetchCompletionHandler?()
         }
     }
-    private var pokemonCellViewModels: [PokemonTableViewCellViewModel] = [PokemonTableViewCellViewModel]() {
+    private var pokemonCellViewModels: [PokemonItemViewModel] = [PokemonItemViewModel]() {
         didSet {
             DispatchQueue.main.async {
                 self.dataRefreshHandler?()
@@ -30,7 +30,7 @@ class DetailListViewModel {
         return pokemonCellViewModels.count
     }
     
-    func getViewModel(forIndexPath indexPath: IndexPath) -> PokemonTableViewCellViewModel {
+    func getViewModel(forIndexPath indexPath: IndexPath) -> PokemonItemViewModel {
         return pokemonCellViewModels[indexPath.row]
     }
     
@@ -79,7 +79,7 @@ class DetailListViewModel {
     
     func processPokemon(_ pokemons: Pokemons) {
         self.pokemons = pokemons //Cache
-        var pokemonViewModels: [PokemonTableViewCellViewModel] = [PokemonTableViewCellViewModel]()
+        var pokemonViewModels: [PokemonItemViewModel] = [PokemonItemViewModel]()
         pokemons.results?.forEach({ (pokemon) in
             pokemonViewModels.append(createViewModel(pokemon: pokemon))
         })
@@ -88,7 +88,7 @@ class DetailListViewModel {
     }
     
     // Create view model from pokemon model
-    func createViewModel(pokemon: Pokemon) -> PokemonTableViewCellViewModel {
-        return PokemonTableViewCellViewModel(pokemon: pokemon)
+    func createViewModel(pokemon: Pokemon) -> PokemonItemViewModel {
+        return PokemonItemViewModel(pokemon: pokemon)
     }
 }
